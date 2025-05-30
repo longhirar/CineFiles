@@ -7,7 +7,7 @@
 
 import Foundation
 
-class Movie: ObservableObject, Identifiable {
+class Movie: ObservableObject, Identifiable, Hashable {
     let id = UUID()
     let nome: String
     let ano: Int
@@ -25,6 +25,14 @@ class Movie: ObservableObject, Identifiable {
         self.direcao = direcao
         self.roteiristas = roteiristas
         self.capaArt = capaArt
+    }
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+    }
+    
+    static func ==(lhs: Movie, rhs: Movie) -> Bool {
+        return lhs.id == rhs.id && lhs.nome == rhs.nome
     }
 }
 

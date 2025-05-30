@@ -32,8 +32,8 @@ struct LibraryView: View {
                     .animation(.easeOut, value: filtro)
 
                     LazyVGrid(columns: [GridItem(), GridItem()]) {
-                        ForEach($dataModel.movies) { $movie in
-                            MovieCardView(movie: $movie)
+                        ForEach(dataModel.movies) { movie in
+                            MovieCardView(movie: movie)
                         }
                     }
                 }

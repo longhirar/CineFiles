@@ -10,6 +10,7 @@ import SwiftUI
 struct HomeView: View {
     @ObservedObject private var dataModel: DataModel = .shared
     @State var selectedArt: String = DataModel.shared.movies.first!.capaArt
+    @Namespace private var animation
     var body: some View {
         NavigationStack {
             
@@ -35,9 +36,9 @@ struct HomeView: View {
                         ))
                 
                 TabView(selection: $selectedArt){
-                    ForEach($dataModel.movies) { $movie in
-                        Tab(value: movie.capaArt){
-                            NavigationLink (destination: MovieDetailView(movie: $movie)) {
+                    ForEach(dataModel.movies) { movie in
+                        Tab(value: movie.capaArt) {
+                            NavigationLink (destination: MovieDetailView(movie: movie, animation: animation)) {
                                 VStack {
                                     Spacer()
                                     Image(movie.capaArt)
@@ -46,6 +47,8 @@ struct HomeView: View {
                                         .frame(width: 180)
                                         .cornerRadius(12)
                                         .padding()
+                                        .matchedGeometryEffect(id: movie.id, in: animation)
+                                        .matchedTransitionSource(id: movie.id, in: animation)
                                     Text(movie.nome)
                                         .font(.title2)
                                         .lineLimit(2)
@@ -63,7 +66,6 @@ struct HomeView: View {
                                 .padding(.bottom, 64)
                                 .foregroundStyle(.white)
                             }
-                            .frame(width: UIScreen.main.bounds.width)
                         }
                     }
                 }
