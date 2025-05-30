@@ -19,9 +19,13 @@ struct MovieCardView: View {
                         .resizable()
                         .scaledToFit()
                         .matchedGeometryEffect(id: movie.id, in: animation)
-                        
+                        .cornerRadius(12)
                     Text(movie.nome)
+                        .frame(maxWidth: .infinity)
                         .font(.headline)
+                        .multilineTextAlignment(.center)
+                        .foregroundStyle(.white)                    
+                    
                     Spacer()
                     HStack {
                         Text(movie.ano.description)

@@ -17,7 +17,7 @@ struct LibraryView: View {
     @State private var pesquisa = ""
     @State private var filtro: FiltroBiblioteca = .favoritos
     @ObservedObject private var dataModel: DataModel = .shared
-        
+    
     var body: some View {
         NavigationStack {
             ScrollView {
@@ -32,7 +32,38 @@ struct LibraryView: View {
                     .animation(.easeOut, value: filtro)
 
                     LazyVGrid(columns: [GridItem(), GridItem()]) {
-                        ForEach(dataModel.movies) { movie in
+                        ForEach((dataModel.movies.filter {
+                            switch filtro {
+                            case .favoritos:
+                                return $0.favorito
+                            case .assistidos:
+                                return $0.assistido
+                            @unknown default:
+                                return false
+                            }
+                        }).filter {
+                            if pesquisa.isEmpty {
+                                return true
+                            }
+                            
+                            if $0.nome.lowercased().contains(pesquisa.lowercased()) {
+                                return true
+                            }
+                                
+                            if $0.ano.description.lowercased().contains(pesquisa.lowercased()) {
+                                return true
+                            }
+                            
+                            if $0.direcao.lowercased().contains(pesquisa.lowercased()) {
+                                return true
+                            }
+                            
+                            if $0.roteiristas.lowercased().contains(pesquisa.lowercased()) {
+                                return true
+                            }
+                            
+                            return false
+                        }) { movie in
                             MovieCardView(movie: movie)
                         }
                     }
@@ -40,8 +71,8 @@ struct LibraryView: View {
             }
             .navigationTitle("Biblioteca")
             .navigationBarTitleDisplayMode(.large)
-            .searchable(text: $pesquisa)
         }
+        .searchable(text: $pesquisa)
     }
 }
 

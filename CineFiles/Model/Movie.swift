@@ -39,7 +39,7 @@ class Movie: ObservableObject, Identifiable, Hashable {
 
 class DataModel: ObservableObject {
     static let shared = DataModel()
-    var movies: [Movie] = [
+    @Published var movies: [Movie] = [
         Movie(nome: "Tudo em Todo o Lugar ao Mesmo Tempo",
               ano: 2022,
               sinopse: "Uma imigrante chinesa de meia idade se envolve em uma aventura louca, onde só ela pode salvar o mundo explorando outros universos que se conectam com as vidas que ela poderia ter levado",
@@ -88,7 +88,7 @@ class DataModel: ObservableObject {
               direcao: "Shawn Levy",
               roteiristas: "Dan Gilroy, Les Bohem, Jeremy Leven, John Gatins, Richard Matheson (autor da obra original)",
               capaArt: "gigantes-de-aco"),
-        Movie(nome: "A vastidão da Noite",
+        Movie(nome: "A Vastidão da Noite",
               ano: 2019,
               sinopse: "Duas crianças procuram a fonte de uma misteriosa frequência que surgiu em sua cidade.",
               direcao: "Andrew Patterson",
