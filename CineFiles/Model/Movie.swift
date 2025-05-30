@@ -129,5 +129,5 @@ struct DataModel {
               direcao: "Brad Bird",
               roteiristas: "Brad Bird",
               capaArt: "os-incriveis")
-    ]
+    ].sorted(by: { $0.nome < $1.nome })
 }
