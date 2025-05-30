@@ -8,13 +8,36 @@
 import SwiftUI
 
 struct MovieDetailView: View {
-    var movie: Movie
+    var movie: Binding<Movie>
     
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        NavigationStack {
+            VStack {
+                
+            }
+            .toolbar {
+                HStack {
+                    Button {
+                        withAnimation {
+                            movie.wrappedValue.favorito.toggle()
+                        }
+                    } label: {
+                        Image(systemName: movie.wrappedValue.favorito ? "star.fill" : "star")
+                    }
+                    
+                    Button {
+                        withAnimation {
+                            movie.wrappedValue.assistido.toggle()
+                        }
+                    } label: {
+                        Image(systemName: movie.wrappedValue.assistido ? "eye.fill" : "eye")
+                    }
+                }
+            }
+        }
     }
 }
 
 #Preview {
-    MovieDetailView(movie: DataModel.movies.randomElement()!)
+    MovieDetailView(movie: .constant(DataModel.movies.randomElement()!))
 }

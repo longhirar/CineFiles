@@ -30,7 +30,6 @@ struct ContentView: View {
                 ProfileView()
             }
         }
-        .background(Color("Breto"))
     }
 }
 

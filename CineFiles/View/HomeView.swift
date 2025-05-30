@@ -36,7 +36,7 @@ struct HomeView: View {
                 TabView(selection: $selectedArt){
                     ForEach(DataModel.movies) { movie in
                         Tab(value: movie.capaArt){
-                            NavigationLink (destination: MovieDetailView(movie: movie)) {
+                            NavigationLink (destination: EmptyView() /*MovieDetailView(movie: movie)*/) {
                                 VStack {
                                     Spacer()
                                     Image(movie.capaArt)

@@ -15,12 +15,13 @@ struct Movie: Identifiable {
     let direcao: String
     let roteiristas: String
     let capaArt: String
-    
+    var favorito: Bool = false
+    var assistido: Bool = false
 }
 
 
 struct DataModel {
-    static let movies: [Movie] = [
+    static var movies: [Movie] = [
         Movie(nome: "Tudo em Todo o Lugar ao Mesmo Tempo",
               ano: 2022,
               sinopse: "Uma imigrante chinesa de meia idade se envolve em uma aventura louca, onde só ela pode salvar o mundo explorando outros universos que se conectam com as vidas que ela poderia ter levado",
