@@ -101,13 +101,15 @@ struct ProfileView: View {
                 }
                
                 Divider().background(Color.gray)
-                Button{} label:{
+                Button{
+                    LoginManager.shared.localUser = nil
+                } label:{
                     Text("Sair")
                         .frame(maxWidth: .infinity)
                         .padding(16)
-                        .background(Color(.systemGray4))
+                        .background(Color("AccentColor").opacity(0.2))
+                        .foregroundStyle(Color("AccentColor"))
                         .clipShape(.buttonBorder)
-                        .foregroundStyle(.gray)
                     
                         
                 }

@@ -151,7 +151,6 @@ struct LoginView: View {
                 }
                 failedLogin = nil
                 
-                
             } label: {
                 Text(isRegister ? "Cadastrar" : "Login")
                     .buttonStyle(.plain)

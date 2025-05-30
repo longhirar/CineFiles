@@ -18,7 +18,7 @@ struct ContentView: View {
     
     var body: some View {
 
-        if let user = loginManager.localUser {
+        if (loginManager.localUser != nil) {
             TabView {
                 Tab("Início", systemImage: "house.fill") {
                     HomeView()
