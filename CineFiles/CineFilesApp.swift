@@ -7,11 +7,20 @@
 
 import SwiftUI
 
+
 @main
 struct CineFilesApp: App {
+    @ObservedObject private var loginManager = LoginManager.shared
+    
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            if loginManager.localUser == nil {
+                LoginView()
+                    .preferredColorScheme(.dark)
+            } else {
+                ContentView()
+                    .preferredColorScheme(.dark)
+            }
         }
     }
 }

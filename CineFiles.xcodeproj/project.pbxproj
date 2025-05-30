@@ -6,6 +6,10 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		9D3597E62DE8AB1200C88195 /* HexColor in Frameworks */ = {isa = PBXBuildFile; productRef = 9D3597E52DE8AB1200C88195 /* HexColor */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		9D35978C2DE7582600C88195 /* CineFiles.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CineFiles.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -23,6 +27,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9D3597E62DE8AB1200C88195 /* HexColor in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -65,6 +70,7 @@
 			);
 			name = CineFiles;
 			packageProductDependencies = (
+				9D3597E52DE8AB1200C88195 /* HexColor */,
 			);
 			productName = CineFiles;
 			productReference = 9D35978C2DE7582600C88195 /* CineFiles.app */;
@@ -94,6 +100,9 @@
 			);
 			mainGroup = 9D3597832DE7582600C88195;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				9D3597E42DE8AB1200C88195 /* XCRemoteSwiftPackageReference "HexColor" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 9D35978D2DE7582600C88195 /* Products */;
 			projectDirPath = "";
@@ -324,6 +333,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		9D3597E42DE8AB1200C88195 /* XCRemoteSwiftPackageReference "HexColor" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/longhirar/HexColor";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		9D3597E52DE8AB1200C88195 /* HexColor */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9D3597E42DE8AB1200C88195 /* XCRemoteSwiftPackageReference "HexColor" */;
+			productName = HexColor;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 9D3597842DE7582600C88195 /* Project object */;
 }

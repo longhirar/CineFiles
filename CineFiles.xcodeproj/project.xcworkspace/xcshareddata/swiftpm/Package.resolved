@@ -1,0 +1,15 @@
+{
+  "originHash" : "e5a8e766d21eb85bbbaeb2a74ee979f6e89826edbf6ec2d6fa00099c9e26c7ed",
+  "pins" : [
+    {
+      "identity" : "hexcolor",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/longhirar/HexColor",
+      "state" : {
+        "branch" : "main",
+        "revision" : "fc06ef1880d7de73ebc745bc2e19af5c7d3a35ab"
+      }
+    }
+  ],
+  "version" : 3
+}
