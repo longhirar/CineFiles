@@ -21,6 +21,7 @@ struct MovieDetailView: View {
                         withAnimation {
                             movie.favorito.toggle()
                         }
+                        print(movie.favorito.description)
                     } label: {
                         Image(systemName: movie.favorito ? "star.fill" : "star")
                     }

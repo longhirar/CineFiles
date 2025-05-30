@@ -16,7 +16,7 @@ struct LibraryView: View {
     
     @State private var pesquisa = ""
     @State private var filtro: FiltroBiblioteca = .favoritos
-    private var dataModel: DataModel = .shared
+    @ObservedObject private var dataModel: DataModel = .shared
         
     var body: some View {
         NavigationStack {

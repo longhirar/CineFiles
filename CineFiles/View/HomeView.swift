@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct HomeView: View {
-    @State var selectedArt: String = DataModel.movies.first!.capaArt
+    @ObservedObject private var dataModel: DataModel = .shared
+    @State var selectedArt: String = DataModel.shared.movies.first!.capaArt
     var body: some View {
         NavigationStack {
             
@@ -34,9 +35,9 @@ struct HomeView: View {
                         ))
                 
                 TabView(selection: $selectedArt){
-                    ForEach(DataModel.movies) { movie in
+                    ForEach($dataModel.movies) { $movie in
                         Tab(value: movie.capaArt){
-                            NavigationLink (destination: EmptyView() /*MovieDetailView(movie: movie)*/) {
+                            NavigationLink (destination: MovieDetailView(movie: $movie)) {
                                 VStack {
                                     Spacer()
                                     Image(movie.capaArt)
@@ -62,13 +63,13 @@ struct HomeView: View {
                                 .padding(.bottom, 64)
                                 .foregroundStyle(.white)
                             }
-                            .frame(width: UIScreen.main.bounds.width, height: .infinity)
+                            .frame(width: UIScreen.main.bounds.width)
                         }
                     }
                 }
                 .tabViewStyle(.page)
             }
-            .frame(width: UIScreen.main.bounds.width, height: .infinity)
+            .frame(width: UIScreen.main.bounds.width)
             .clipped()
         }
     }

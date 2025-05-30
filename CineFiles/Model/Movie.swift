@@ -7,20 +7,29 @@
 
 import Foundation
 
-struct Movie: Identifiable {
-    var id = UUID()
-    var nome: String
-    var ano: Int
-    var sinopse: String
-    var direcao: String
-    var roteiristas: String
-    var capaArt: String
-    var favorito: Bool = false
-    var assistido: Bool = false
+class Movie: ObservableObject, Identifiable {
+    let id = UUID()
+    let nome: String
+    let ano: Int
+    let sinopse: String
+    let direcao: String
+    let roteiristas: String
+    let capaArt: String
+    @Published var favorito: Bool = false
+    @Published var assistido: Bool = false
+    
+    init(nome: String, ano: Int, sinopse: String, direcao: String, roteiristas: String, capaArt: String) {
+        self.nome = nome
+        self.ano = ano
+        self.sinopse = sinopse
+        self.direcao = direcao
+        self.roteiristas = roteiristas
+        self.capaArt = capaArt
+    }
 }
 
 
-struct DataModel {
+class DataModel: ObservableObject {
     static let shared = DataModel()
     var movies: [Movie] = [
         Movie(nome: "Tudo em Todo o Lugar ao Mesmo Tempo",
