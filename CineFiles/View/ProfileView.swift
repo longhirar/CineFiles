@@ -14,10 +14,8 @@ struct ProfileView: View {
     
     @State private var idiomaSelecionado = "Português (Brasil)"
     @State private var mostrarModalIdiomas = false
-    
     var body: some View {
-        
-        
+     
         ZStack{
             
             VStack {
@@ -43,7 +41,7 @@ struct ProfileView: View {
                 Image("capa-perfil")
                     .resizable()
                     .scaledToFit()
-                    .frame(width: 80, height: 80)
+                    .frame(width: 120, height: 120)
                     .clipShape(Circle())
                 
                 Button{} label:{
@@ -55,7 +53,7 @@ struct ProfileView: View {
                 }
                 Divider().background(Color.gray)
                 
-                VStack (alignment: .leading){
+                VStack{
                     
                     HStack {
                         VStack(alignment: .leading) {
@@ -80,7 +78,6 @@ struct ProfileView: View {
                     
                 }
                 
-                .padding()
                 
                 Button {
                     mostrarModalIdiomas = true
@@ -95,13 +92,31 @@ struct ProfileView: View {
                             Spacer()
                             Image(systemName: "chevron.down")
                                 .foregroundColor(.blue)
+                            
                         }
+                        
+                        
                     }
+                    
+                }
+               
+                Divider().background(Color.gray)
+                Button{} label:{
+                    Text("Sair")
+                        .frame(maxWidth: .infinity)
+                        .padding(16)
+                        .background(Color(.systemGray4))
+                        .clipShape(.buttonBorder)
+                        .foregroundStyle(.gray)
+                    
+                        
                 }
                 
                 
-                
             }
+            
+            
+            
             .sheet(isPresented: $mostrarModalIdiomas) {
                 IdiomaModalView(idiomaSelecionado: $idiomaSelecionado)
                     .presentationDetents([.fraction(0.30)])
@@ -109,6 +124,7 @@ struct ProfileView: View {
             
             
         }
+        .ignoresSafeArea()
     }
 }
 
