@@ -22,6 +22,7 @@ struct LoginView: View {
     @State private var email: String = ""
     @State private var password: String = ""
     @State private var failedLogin: FailedLoginReason? = nil
+
     
     private func nomeTextField(name: String, placeholder: String, text: Binding<String>) -> some View {
         VStack {
@@ -149,7 +150,6 @@ struct LoginView: View {
                     return
                 }
                 failedLogin = nil
-                
                 
             } label: {
                 Text(isRegister ? "Cadastrar" : "Login")

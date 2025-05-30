@@ -10,27 +10,34 @@ import SwiftUI
 struct ContentView: View {
     @ObservedObject var loginManager = LoginManager.shared
     
+    
     init() {
         UITabBar.appearance().backgroundColor = UIColor(named: "Breto")
     }
 
     
     var body: some View {
-        TabView {
-            Tab("Início", systemImage: "house.fill") {
-                HomeView()
+
+        if (loginManager.localUser != nil) {
+            TabView {
+                Tab("Início", systemImage: "house.fill") {
+                    HomeView()
+                }
+                Tab("Biblioteca", systemImage: "square.stack.fill") {
+                    LibraryView()
+                }
+                Tab("Buscar", systemImage: "magnifyingglass") {
+                    SearchView()
+                }
+                Tab("Perfil", systemImage: "person.fill") {
+                    ProfileView()
+                }
             }
-            Tab("Biblioteca", systemImage: "square.stack.fill") {
-                LibraryView()
-            }
-            Tab("Buscar", systemImage: "magnifyingglass") {
-                SearchView()
-            }
-            Tab("Perfil", systemImage: "person.fill") {
-                ProfileView()
-            }
+            .background(Color("Breto"))
+        } else {
+            LoginView()
         }
-        .background(Color("Breto"))
+        
     }
 }
 
