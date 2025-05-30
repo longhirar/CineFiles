@@ -8,13 +8,21 @@
 import SwiftUI
 
 struct MovieDetailView: View {
-    @Binding var movie: Movie
+    @ObservedObject var movie: Movie
+    let animation: Namespace.ID
     
     var body: some View {
         NavigationStack {
             VStack {
-                
+                Image(movie.capaArt)
+                    .resizable()
+                    .scaledToFit()
+                    .matchedGeometryEffect(id: movie.id, in: animation)
+                    .frame(width: 200)
+
             }
+            .navigationTransition(.zoom(sourceID: movie.id, in: animation))
+
             .toolbar {
                 HStack {
                     Button {
@@ -39,6 +47,6 @@ struct MovieDetailView: View {
     }
 }
 
-#Preview {
-    MovieDetailView(movie: .constant(DataModel.shared.movies.randomElement()!))
-}
+//#Preview {
+//    MovieDetailView(movie: DataModel.shared.movies.randomElement()!)
+//}
