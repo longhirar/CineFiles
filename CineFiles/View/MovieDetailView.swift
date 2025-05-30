@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct MovieDetailView: View {
-    var movie: Binding<Movie>
+    @Binding var movie: Movie
     
     var body: some View {
         NavigationStack {
@@ -19,18 +19,18 @@ struct MovieDetailView: View {
                 HStack {
                     Button {
                         withAnimation {
-                            movie.wrappedValue.favorito.toggle()
+                            movie.favorito.toggle()
                         }
                     } label: {
-                        Image(systemName: movie.wrappedValue.favorito ? "star.fill" : "star")
+                        Image(systemName: movie.favorito ? "star.fill" : "star")
                     }
                     
                     Button {
                         withAnimation {
-                            movie.wrappedValue.assistido.toggle()
+                            movie.assistido.toggle()
                         }
                     } label: {
-                        Image(systemName: movie.wrappedValue.assistido ? "eye.fill" : "eye")
+                        Image(systemName: movie.assistido ? "eye.fill" : "eye")
                     }
                 }
             }
@@ -39,5 +39,5 @@ struct MovieDetailView: View {
 }
 
 #Preview {
-    MovieDetailView(movie: .constant(DataModel.movies.randomElement()!))
+    MovieDetailView(movie: .constant(DataModel.shared.movies.randomElement()!))
 }

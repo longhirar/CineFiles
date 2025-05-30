@@ -7,49 +7,33 @@
 
 import SwiftUI
 
+enum FiltroBiblioteca: Int, Equatable {
+    case favoritos
+    case assistidos
+}
+
 struct LibraryView: View {
     
     @State private var pesquisa = ""
-    @State private var selection = 0
-    
-    private func movieCard(_ movie: Movie) -> some View {
-        VStack(alignment: .leading) {
-            Image(movie.capaArt)
-                .resizable()
-                .scaledToFit()
-            Text(movie.nome)
-                .font(.headline)
-            Spacer()
-            HStack {
-                Text(movie.ano.description)
-                Spacer()
-                Menu {
-                    Button("Favoritar") {}
-                    Button("Marcar como assistido") {}
-                } label: {
-                    Image(systemName: "ellipsis")
-                }
-            }
-        }
-        .frame(width: 150, height: 300)
-        .padding()
-    }
-    
+    @State private var filtro: FiltroBiblioteca = .favoritos
+    private var dataModel: DataModel = .shared
+        
     var body: some View {
         NavigationStack {
             ScrollView {
                 VStack(alignment: .leading) {
-                    Picker("Filtro", selection: $selection) {
-                        Text("Favoritos").tag(0)
-                        Text("Assistidos").tag(1)
+                    Picker("Filtro", selection: $filtro) {
+                        Text("Favoritos").tag(FiltroBiblioteca.favoritos)
+                        Text("Assistidos").tag(FiltroBiblioteca.assistidos)
                     }
                     .pickerStyle(.segmented)
                     .padding(.horizontal, 16)
                     .padding(.top)
+                    .animation(.easeOut, value: filtro)
 
                     LazyVGrid(columns: [GridItem(), GridItem()]) {
-                        ForEach(DataModel.movies) { movie in
-                            movieCard(movie)
+                        ForEach($dataModel.movies) { $movie in
+                            MovieCardView(movie: $movie)
                         }
                     }
                 }
