@@ -171,7 +171,7 @@ struct ProfileView: View {
             
             .sheet(isPresented: $mostrarModalConta) {
                 ContaModalView(contaSelecionado: $contaSelecionado)
-                    .presentationDetents([.fraction(0.30)])
+                    .presentationDetents([.fraction(0.36)])
             }
             
             
@@ -257,7 +257,7 @@ struct ContaModalView: View {
                                 
                         }
                         Spacer()
-                        Image(systemName:("18.square.fill"))
+                        Image(systemName:("pencil"))
                             .foregroundStyle(Color("AccentColor"))
                             .font(.system(size: 25))
                         
@@ -269,6 +269,7 @@ struct ContaModalView: View {
                     
                     
                 }
+                
                 VStack{
                     
                     HStack {
@@ -289,7 +290,7 @@ struct ContaModalView: View {
                                 
                         }
                         Spacer()
-                        Image(systemName:("18.square.fill"))
+                        Image(systemName:("pencil"))
                             .foregroundStyle(Color("AccentColor"))
                             .font(.system(size: 25))
                         
@@ -321,19 +322,34 @@ struct ContaModalView: View {
                                 
                         }
                         Spacer()
-                        Image(systemName:("18.square.fill"))
+                        Image(systemName:("pencil"))
                             .foregroundStyle(Color("AccentColor"))
                             .font(.system(size: 25))
                         
                     }
                     .padding(.horizontal)
                     .padding(.vertical,7)
+                    
                     Divider().background(Color.gray)
                     
                     
                     
                 }
+                .padding(.bottom,60)
             }
+            .padding(.top,60)
+            .navigationTitle("Detalhes da Conta")
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .confirmationAction) {
+                    Button("Ok") {
+                        dismiss()
+                    }
+                }
+            }
+            
+            .padding(20)
+            
         }
     }
 }
