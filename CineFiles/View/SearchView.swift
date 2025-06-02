@@ -12,22 +12,29 @@ struct SearchView: View {
     @ObservedObject private var dataModel: DataModel = .shared
 
     var filmesFiltrados: [Movie] {
-        let texto = pesquisa.trimmingCharacters(in: .whitespacesAndNewlines)
-        
-        guard !texto.isEmpty else {
-            return dataModel.movies
+        dataModel.movies.filter {
+            if pesquisa.isEmpty {
+                return true
+            }
+            
+            if $0.nome.lowercased().contains(pesquisa.lowercased()) {
+                return true
+            }
+                
+            if $0.ano.description.lowercased().contains(pesquisa.lowercased()) {
+                return true
+            }
+            
+            if $0.direcao.lowercased().contains(pesquisa.lowercased()) {
+                return true
+            }
+            
+            if $0.roteiristas.lowercased().contains(pesquisa.lowercased()) {
+                return true
+            }
+            
+            return false
         }
-        
-        let prefixMatches = dataModel.movies.filter {
-            $0.nome.lowercased().hasPrefix(texto.lowercased())
-        }
-        
-        let otherMatches = dataModel.movies.filter {
-            $0.nome.lowercased().contains(texto.lowercased()) &&
-            !$0.nome.lowercased().hasPrefix(texto.lowercased())
-        }
-        
-        return prefixMatches + otherMatches
     }
 
     var body: some View {
