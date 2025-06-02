@@ -12,4 +12,5 @@ struct User: Identifiable {
     var name: String
     var email: String
     var password: String
+    var onboardingComplete: Bool = false
 }

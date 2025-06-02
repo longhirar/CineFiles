@@ -25,7 +25,11 @@ struct RootView: View {
         if loginManager.localUser == nil {
             LoginView()
         } else {
-            ContentView()
+            if (!(loginManager.localUser?.onboardingComplete ?? true)) {
+                OnboardingView()
+            } else {
+                ContentView()
+            }
         }
     }
 }
